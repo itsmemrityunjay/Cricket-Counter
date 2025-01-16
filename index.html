@@ -73,6 +73,72 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
+      /* CSS */
+      .button-19 {
+        appearance: button;
+        background-color: #1899d6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        box-sizing: border-box;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: din-round, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        line-height: 20px;
+        margin: 0;
+        outline: none;
+        overflow: visible;
+        padding: 13px 16px;
+        text-align: center;
+        text-transform: uppercase;
+        touch-action: manipulation;
+        transform: translateZ(0);
+        transition: filter 0.2s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .button-19:after {
+        background-clip: padding-box;
+        background-color: #1cb0f6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+      .button-19,
+      .button-19:focus {
+        user-select: auto;
+      }
+
+      .button-19:hover:not(:disabled) {
+        filter: brightness(1.1);
+        -webkit-filter: brightness(1.1);
+      }
+
+      .button-19:disabled {
+        cursor: auto;
+      }
+
+      .button-19:active {
+        border-width: 4px 0 0;
+        background: none;
+      }
+
       button:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -83,6 +149,12 @@
         position: fixed;
         top: 50%;
         left: 50%;
+        /* width: 80vw;
+        height: 80vh; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         transform: translate(-50%, -50%);
         background: white;
         padding: 20px;
@@ -99,8 +171,8 @@
       }
 
       .coin {
-        width: 100px;
-        height: 100px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
         background: linear-gradient(135deg, #ffcc33, #ffdd66);
         display: flex;
@@ -134,16 +206,18 @@
   <body>
     <img src="rb_11912.png" alt="Get Set Cricket" width="200" height="200" />
     <h1>Get Set Cricket</h1>
-    <div class="message" id="message">Counting down to 2 PM...</div>
+    <div class="message" id="message">Counting down to 1 PM...</div>
     <div class="counter" id="counter">00:00:00</div>
-    <button id="doTossButton">Do Toss</button>
+    <button class="button-19" id="doTossButton">Do Toss</button>
 
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
-      <h2>Coin Toss</h2>
+      <div>
+        <h2>Coin Toss</h2>
+      </div>
       <div class="coin" id="coinFace">?</div>
-      <button id="flipButton">Flip</button>
-      <button id="closeButton">Close</button>
+      <button class="button-19" id="flipButton">Flip</button>
+      <button class="button-19" id="closeButton">Close</button>
       <div class="stats">
         <p>Heads: <span id="headsCount">0</span></p>
         <p>Tails: <span id="tailsCount">0</span></p>
