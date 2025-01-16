@@ -66,7 +66,6 @@
         margin-top: 20px;
         border: none;
         border-radius: 25px;
-        /* background: linear-gradient(90deg, #ff6a00, #ee0979); */
         color: black;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -83,8 +82,6 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        /* width: 80vw;
-        height: 80vh; */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -135,6 +132,44 @@
         z-index: 999;
         display: none;
       }
+
+      /* Custom alert box styling */
+      .alert-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #ff6a00, #ee0979);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+      }
+
+      .alert-box button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        background: #fff;
+        color: #ff6a00;
+        border: none;
+        width: 100px;
+
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .alert-box button:hover {
+        background: #ffcc00;
+      }
     </style>
   </head>
   <body>
@@ -157,16 +192,24 @@
         <p>Tails: <span id="tailsCount">0</span></p>
       </div>
     </div>
+
     <iframe
       id="background-audio"
       width="0"
       height="0"
-      src="https://www.youtube.com/embed/lKKtku6CqtQ?autoplay=1&loop=1&playlist=Oj623A71okc"
+      src="https://www.youtube.com/embed/Oj623A71okc?autoplay=1&loop=1&playlist=Oj623A71okc"
       frameborder="0"
       allow="autoplay"
       loop="1"
       style="display: none"
     ></iframe>
+
+    <!-- Custom Alert Box -->
+    <div class="alert-box" id="alertBox">
+      <h2>Are you ready?</h2>
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
+    </div>
 
     <script>
       let targetHour = 13; // 1 PM in 24-hour format
@@ -249,6 +292,20 @@
         headsCountElement.textContent = headsCount;
         tailsCount = 0;
         tailsCountElement.textContent = tailsCount;
+      });
+
+      // Alert Logic
+      const alertBox = document.getElementById("alertBox");
+      const yesButton = document.getElementById("yesButton");
+      const noButton = document.getElementById("noButton");
+
+      yesButton.addEventListener("click", () => {
+        alertBox.style.display = "none";
+      });
+
+      noButton.addEventListener("click", () => {
+        alertBox.style.display = "block";
+        alert("bsdk yahan gand dene aaya h fir");
       });
     </script>
   </body>
