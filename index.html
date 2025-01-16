@@ -59,17 +59,6 @@
         }
       }
 
-      @keyframes slideIn {
-        from {
-          transform: translateY(50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
       button {
         padding: 10px 20px;
         font-size: 1rem;
@@ -80,7 +69,6 @@
         background: linear-gradient(90deg, #ff6a00, #ee0979);
         color: white;
         cursor: pointer;
-        animation: slideIn 1.5s ease-in-out;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
@@ -110,16 +98,25 @@
         color: #333;
       }
 
-      .popup .coin {
-        font-size: 3rem;
-        margin: 20px 0;
+      .coin {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffcc33, #ffdd66);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
         color: #333;
-        animation: pulse 1s infinite;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      .popup button {
-        background: linear-gradient(90deg, #00c6ff, #0072ff);
-        color: white;
+      .stats {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #333;
       }
 
       .overlay {
@@ -135,6 +132,7 @@
     </style>
   </head>
   <body>
+    <img src="rb_11912.png" alt="Get Set Cricket" width="200" height="200" />
     <h1>Get Set Cricket</h1>
     <div class="message" id="message">Counting down to 2 PM...</div>
     <div class="counter" id="counter">00:00:00</div>
@@ -146,10 +144,16 @@
       <div class="coin" id="coinFace">?</div>
       <button id="flipButton">Flip</button>
       <button id="closeButton">Close</button>
+      <div class="stats">
+        <p>Heads: <span id="headsCount">0</span></p>
+        <p>Tails: <span id="tailsCount">0</span></p>
+      </div>
     </div>
 
     <script>
       let targetHour = 13; // 1 PM in 24-hour format
+      let headsCount = 0;
+      let tailsCount = 0;
 
       function updateCounter() {
         const now = new Date();
@@ -199,6 +203,8 @@
       const flipButton = document.getElementById("flipButton");
       const closeButton = document.getElementById("closeButton");
       const coinFace = document.getElementById("coinFace");
+      const headsCountElement = document.getElementById("headsCount");
+      const tailsCountElement = document.getElementById("tailsCount");
 
       doTossButton.addEventListener("click", () => {
         overlay.style.display = "block";
@@ -209,6 +215,13 @@
       flipButton.addEventListener("click", () => {
         const result = Math.random() < 0.5 ? "Head" : "Tail";
         coinFace.textContent = result;
+        if (result === "Head") {
+          headsCount++;
+          headsCountElement.textContent = headsCount;
+        } else {
+          tailsCount++;
+          tailsCountElement.textContent = tailsCount;
+        }
       });
 
       closeButton.addEventListener("click", () => {
