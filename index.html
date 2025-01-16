@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time-Based Counter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .counter {
+        font-size: 2rem;
+        margin: 20px 0;
+      }
+      .message {
+        font-size: 1.5rem;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get Set Cricket</h1>
+    <div class="message" id="message">Counting down to 2 PM...</div>
+    <div class="counter" id="counter">00:00:00</div>
+
+    <script>
+      let targetHour = 13; // 1 PM in 24-hour format
+
+      function updateCounter() {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const currentSecond = now.getSeconds();
+
+        // Determine the next target time
+        if (currentHour >= 13 && currentHour < 16) {
+          targetHour = 16; // Switch to 4 PM after 2 PM
+          document.getElementById("message").textContent =
+            "Counting down to 4 PM...";
+        } else if (currentHour >= 16) {
+          targetHour = 11 + 24; // Switch to the next day's 1 PM
+          document.getElementById("message").textContent =
+            "Counting down to tomorrow's 1 PM...";
+        }
+
+        // Calculate the time difference
+        const targetTime = new Date();
+        targetTime.setHours(targetHour, 0, 0, 0);
+
+        const timeDifference = targetTime - now;
+
+        if (timeDifference > 0) {
+          const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+          const seconds = Math.floor((timeDifference / 1000) % 60);
+
+          document.getElementById("counter").textContent = `${hours
+            .toString()
+            .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`;
+        } else {
+          document.getElementById("counter").textContent = "00:00:00";
+        }
+      }
+
+      // Update the counter every second
+      setInterval(updateCounter, 1000);
+    </script>
+  </body>
+</html>
