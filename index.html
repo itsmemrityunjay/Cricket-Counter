@@ -244,10 +244,10 @@
         const currentSecond = now.getSeconds();
 
         // Determine the next target time
-        if (currentHour >= 13 && currentHour < 16) {
-          targetHour = 16; // Switch to 4 PM after 2 PM
+        if (currentHour >= 13 && currentHour < 17) {
+          targetHour = 17; // Switch to 4 PM after 2 PM
           document.getElementById("message").textContent =
-            "Counting down to 4 PM...";
+            "Counting down to 5 PM...";
         } else if (currentHour >= 16) {
           targetHour = 11 + 24; // Switch to the next day's 1 PM
           document.getElementById("message").textContent =
